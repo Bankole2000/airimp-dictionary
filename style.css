@@ -1,0 +1,11 @@
+.toggle-container {
+    transition: all 0.35s ease-in-out;
+    overflow: hidden;
+  }
+
+  .toggle-container {
+    height: 0px;
+  }
+
+ 
+
