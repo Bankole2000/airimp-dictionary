@@ -8,7 +8,9 @@ const resultsTable = document.querySelector('#resultstable');
 const resultsGroupCount = document.querySelector('#resultsGroupCount')
 const alertContainer = document.querySelector('#alert-container')
 const grouplistMenu = document.querySelector('#groupListMenu')
-let  airStatusCodes, codeOrGroupName = codeInput.value;
+const fieldValueForm = document.querySelector('#fieldValueForm');
+
+let  airStatusCodes, codeOrGroupName = codeInput.value, fieldNames = [], fieldValues = [], allFieldNames, allFieldValues = {};
 
 const getCodeIndices = (query) => {
     let airStatusCodesFields = airStatusCodes.map(code => code.values);
@@ -47,6 +49,26 @@ const getALlStatusCodes = async () => {
     console.log({data});
     airStatusCodes = data;
     return data
+}
+
+const getAllFieldNames = () => {
+    return [...new Set(airStatusCodes.flatMap(codeObject => codeObject.fields))]
+}
+
+const getAllFieldValues = () => {
+    const allValueObjects = airStatusCodes.map(codeObject => codeObject.values);
+    // let fieldNames = [...new Set(allValueObjects.flatMap(valueObject => Object.keys(valueObject)))]
+    allValueObjects.forEach((valueObject) => {
+        for (const key in valueObject) {
+            if (allFieldValues[key]) {
+                allFieldValues[key].push(valueObject[key]);
+            } else {
+                allFieldValues[key] = [];
+                allFieldValues[key].push(valueObject[key])
+            }
+        }
+    })
+    console.log({allFieldValues});
 }
 
 const getCodeGroups = () => {
@@ -145,6 +167,8 @@ const resetCodesTable = async () => {
         displayStatusCodes(data);
         displayGroupCounts(getCodeGroups());
         showAlert(`${data.length > 0 ? 'success': 'warning'}`, `<strong>${data.length}</strong> Code results found`)
+        allFieldNames = getAllFieldNames();
+        console.log({allFieldValues: getAllFieldValues()})
     })
 }
 

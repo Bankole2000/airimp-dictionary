@@ -1,7 +1,7 @@
 [
     { "fields": ["test", "anotherField"], "values": {"test": true, "anotherField":"just a random value"}, "code": "AAK", "shortDesc": "Response to Block Owner Requests", "group": "MIBlockSpaceCodes" },
-    { "fields": [], "values": {}, "code": "ACK", "shortDesc": "Acknowledge", "group": "PassengerReservationCodes" },
-    { "fields": [], "values": {}, "code": "ACKI", "shortDesc": "Automated Check-In", "group": "SECSSRCodes" },
+    { "fields": ["test", "isCheckedIn"], "values": {"test": false, "isCheckedIn": true}, "code": "ACK", "shortDesc": "Acknowledge", "group": "PassengerReservationCodes" },
+    { "fields": ["isCheckedIn"], "values": {"isCheckedIn" : false}, "code": "ACKI", "shortDesc": "Automated Check-In", "group": "SECSSRCodes" },
     { "fields": [], "values": {}, "code": "ACKI", "shortDesc": "Automated Check-In", "group": "PassengerReservationCodes" },
     { "fields": [], "values": {}, "code": "ACON", "shortDesc": "Air Conditioning", "group": "PassengerReservationCodes" },
     { "fields": [], "values": {}, "code": "ADAC", "shortDesc": "Advise acceptance", "group": "PassengerReservationCodes" },
