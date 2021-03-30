@@ -108,7 +108,11 @@ const getSpecificMultiFieldValue = (payload) => {
           }
         });
       });
-      return [secondFilteredPossibleValues[finalIndex]];
+      if (secondFilteredPossibleValues[finalIndex]) {
+        return [secondFilteredPossibleValues[finalIndex]];
+      } else {
+        return [];
+      }
     }
   }
 };
