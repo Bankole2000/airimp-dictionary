@@ -10,13 +10,20 @@ const alertContainer = document.querySelector("#alert-container");
 const grouplistMenu = document.querySelector("#groupListMenu");
 const fieldValueForm = document.querySelector("#fieldValueForm");
 const filterByDescBtn = document.querySelector("#filterByDesc");
+const addFieldValueFormBtn = document.querySelector("#addFieldValueForm");
 
 let airStatusCodes,
   codeOrGroupName = codeInput.value,
   fieldNames = [],
   fieldValues = [],
+  noOfFieldValues = 0,
   allFieldNames,
   allFieldValues = {};
+const arraysEqual = (a, b) => {
+  a1 = a.slice().sort();
+  b1 = b.slice().sort();
+  return JSON.stringify(a1) === JSON.stringify(b1);
+};
 
 const getCodeIndices = (query) => {
   let airStatusCodesFields = airStatusCodes.map((code) => code.values);
@@ -25,22 +32,186 @@ const getCodeIndices = (query) => {
   });
 };
 
-const searchByDescription = () => {};
+addFieldValueFormBtn.addEventListener("click", (e) => {
+  createFieldValueForm(noOfFieldValues);
+});
+
 removeFieldValueForm = (i) => {
   console.log({ i });
-  console.log({ fieldValueForm });
-  fieldValueForm.removeChild(fieldValueForm.childNodes[i]);
+  const fieldValueFormToRemove = document.querySelector(`#fieldValueForm-${i}`);
+  fieldValueFormToRemove.remove();
+  noOfFieldValues -= 1;
+};
+
+const getSingleFieldValueCodes = (field, value) => {
+  let allPossibleValues = getAllPossibleValues(field);
+  console.log({ allPossibleValues });
+  return (firstFilter = allPossibleValues.filter((codeObject) => {
+    return codeObject.values[field] == value;
+  }));
+};
+
+const getSpecificSingleFieldValueCodes = (field, value) => {
+  let allPossibleValues = getAllPossibleValues(field);
+  console.log({ allPossibleValues });
+  return (firstFilter = allPossibleValues.filter((codeObject) => {
+    return codeObject.values[field] == value && codeObject.fields.length == 1;
+  }));
+};
+
+const getSpecificMultiFieldValue = (payload) => {
+  let fields = Object.keys(payload);
+  let values = Object.values(payload);
+  // console.log({fields, values});
+  if (fields.length == 1) {
+    return getSingleFieldValueCodes(fields[0], values[0]);
+  } else {
+    let allPossibleValues = [];
+    fields.forEach((field, i) => {
+      allPossibleValues.push(...getAllPossibleValues(field));
+    });
+    let firstFilteredPossibleValues = allPossibleValues.filter(
+      (codeObject) => codeObject.fields.length == fields.length
+    );
+    if (firstFilteredPossibleValues.length == 1) {
+      return firstFilteredPossibleValues[0];
+    } else {
+      let secondFilteredPossibleValues = firstFilteredPossibleValues.filter(
+        (codeObject) => {
+          console.log(arraysEqual(codeObject.fields, fields));
+          return arraysEqual(codeObject.fields, fields);
+        }
+      );
+      finalValues = secondFilteredPossibleValues.map((codeObject, i) => {
+        return codeObject.values;
+      });
+      let exactCode = {};
+      let finalIndex = null;
+      finalValues.forEach((valueObj, i) => {
+        let allValuesCorrect = null;
+        fields.forEach((field, n) => {
+          console.log({
+            field,
+            n,
+            valueObj,
+            value: values[n],
+            fieldInObj: valueObj[field],
+          });
+          if (valueObj[field] == values[n]) {
+            allValuesCorrect = true;
+          } else {
+            allValuesCorrect = false;
+          }
+          if (n == fields.length - 1 && allValuesCorrect == true) {
+            finalIndex = i;
+            console.log({ finalIndex });
+          }
+        });
+      });
+      return [secondFilteredPossibleValues[finalIndex]];
+    }
+  }
+};
+
+const query = () => {
+  const formInputs = document.querySelectorAll(".formFieldInput");
+  console.log({ formInputs });
+  let query = {},
+    newFieldName;
+  formInputs.forEach((input, i) => {
+    console.log({ value: input.value });
+    if (i % 2 == 0) {
+      newFieldName = input.value;
+      query[newFieldName] = "";
+    } else {
+      if (input.value == "true") {
+        query[newFieldName] = true;
+      } else if (input.value == "false") {
+        query[newFieldName] = false;
+      } else {
+        query[newFieldName] = input.value;
+      }
+    }
+  });
+  console.log({ query });
+  members = getSpecificMultiFieldValue(query);
+  console.log(members);
+  displayStatusCodes(members);
+  showAlert(
+    `${members.length > 0 ? "success" : "warning"}`,
+    `<strong>${members.length}</strong> Code results found`
+  );
+};
+
+const specificSoloSearch = (i) => {
+  let fieldName = document.querySelector(`#fieldName-${i}`).value;
+  let fieldValue = document.querySelector(`#fieldValue-${i}`).value;
+
+  let members;
+  if (fieldValue) {
+    if (fieldValue == "true") {
+      fieldValue = true;
+    } else if (fieldValue == "false") {
+      fieldValue = false;
+    } else {
+      fieldValue = fieldValue;
+    }
+    members = getSpecificSingleFieldValueCodes(fieldName, fieldValue);
+    console.log({ fieldName, fieldValue });
+
+    console.log(members);
+    displayStatusCodes(members);
+    showAlert(
+      `${members.length > 0 ? "success" : "warning"}`,
+      `<strong>${members.length}</strong> Code results found`
+    );
+  } else {
+    members = getAllPossibleValues(fieldName);
+    displayStatusCodes(members);
+    showAlert(
+      `${members.length > 0 ? "success" : "warning"}`,
+      `<strong>${members.length}</strong> Code results found`
+    );
+  }
 };
 
 const soloSearch = (i) => {
   console.log({ i });
-  let fieldName = document.querySelector(`#fieldName-${i}`);
-  let fieldValue = document.querySelector(`#fieldValue-${i}`);
-  console.log({ fieldName, fieldValue });
+  let fieldName = document.querySelector(`#fieldName-${i}`).value;
+  let fieldValue = document.querySelector(`#fieldValue-${i}`).value;
+
+  let members;
+  if (fieldValue) {
+    if (fieldValue == "true") {
+      fieldValue = true;
+    } else if (fieldValue == "false") {
+      fieldValue = false;
+    } else {
+      fieldValue = fieldValue;
+    }
+    members = getSingleFieldValueCodes(fieldName, fieldValue);
+    console.log({ fieldName, fieldValue });
+
+    console.log(members);
+    displayStatusCodes(members);
+    showAlert(
+      `${members.length > 0 ? "success" : "warning"}`,
+      `<strong>${members.length}</strong> Code results found`
+    );
+  } else {
+    members = getAllPossibleValues(fieldName);
+    displayStatusCodes(members);
+    showAlert(
+      `${members.length > 0 ? "success" : "warning"}`,
+      `<strong>${members.length}</strong> Code results found`
+    );
+  }
 };
+
 const createFieldValueForm = (i) => {
   let newForm = document.createElement("div");
   newForm.setAttribute("class", "row");
+  newForm.setAttribute("id", `fieldValueForm-${i}`);
   let formCol1 = document.createElement("div");
   let formCol2 = document.createElement("div");
   let formCol3 = document.createElement("div");
@@ -50,7 +221,10 @@ const createFieldValueForm = (i) => {
   let fieldNameLabel = document.createElement("label");
   let fieldValueInput = document.createElement("input");
   let fieldValueLabel = document.createElement("label");
-  fieldNameSelect.setAttribute("class", "form-control");
+  fieldNameSelect.setAttribute(
+    "class",
+    "form-control formFieldInput fieldName"
+  );
   fieldNameSelect.setAttribute("id", `fieldName-${i}`);
   fieldNameLabel.setAttribute("for", `fieldName-${i}`);
   fieldNameLabel.innerText = "Select Field Name";
@@ -60,13 +234,14 @@ const createFieldValueForm = (i) => {
     fieldoption.innerText = fieldname;
     fieldNameSelect.appendChild(fieldoption);
   });
-
-  fieldValueInput.setAttribute("class", "form-control");
+  fieldValueInput.setAttribute(
+    "class",
+    "form-control formFieldInput fieldValue"
+  );
   fieldValueInput.setAttribute("type", "text");
   fieldValueInput.setAttribute("placeholder", "Enter Field Value");
   fieldNameSelect.addEventListener("change", (e) => {
     const { value } = e.target;
-    console.log({ value: e.target.value });
     fieldValueInput.setAttribute("placeholder", allFieldValues[value]);
   });
   fieldValueInput.setAttribute("id", `fieldValue-${i}`);
@@ -76,7 +251,6 @@ const createFieldValueForm = (i) => {
   formGroup1.appendChild(fieldNameLabel);
   formGroup1.appendChild(fieldNameSelect);
   formCol1.appendChild(formGroup1);
-
   formGroup2.setAttribute("class", "form-group");
   formGroup2.appendChild(fieldValueLabel);
   formGroup2.appendChild(fieldValueInput);
@@ -87,23 +261,19 @@ const createFieldValueForm = (i) => {
   formCol3.style.display = "flex";
   formCol3.style.justifyContent = "flex-start";
   formCol3.style.alignItems = "center";
-
-  formCol3.innerHTML = `<button onClick="createFieldValueForm(${
-    i + 1
-  })" class="btn btn-primary">Add Field + value</button>
+  formCol3.innerHTML = `
   <button onClick="removeFieldValueForm(${i})" ${
     i == 0 ? "disabled" : ""
   } class="btn btn-danger mx-2">
     Remove Field + value
   </button>
-  <button class="btn btn-warning mx-2" onClick="soloSearch(${i})">Solo Search</button>`;
-
+  <button class="btn btn-primary mx-2" onClick="soloSearch(${i})">Solo Search</button>
+  <button class="btn btn-warning mx-2" onClick="specificSoloSearch(${i})">Specific Search</button>`;
   newForm.appendChild(formCol1);
   newForm.appendChild(formCol2);
   newForm.appendChild(formCol3);
-
   fieldValueForm.appendChild(newForm);
-
+  noOfFieldValues += 1;
   console.log({ newForm });
 };
 

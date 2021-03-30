@@ -35,10 +35,6 @@
     <div class="container">
       <h1>Query</h1>
       <hr />
-      <!-- <div class="form-group">
-            <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div> -->
     </div>
     <div class="container mb-4">
       <div class="input-group">
@@ -73,13 +69,7 @@
           >
             Get Field related Codes
           </button>
-          <div class="dropdown-menu" id="groupListMenu">
-            <!-- <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a> -->
-          </div>
+          <div class="dropdown-menu" id="groupListMenu"></div>
         </div>
       </div>
 
@@ -118,7 +108,12 @@
           <legend class="scheduler-border">Fields + Values Query</legend>
           <div id="fieldValueForm"></div>
           <div style="display: flex; justify-content: center; width: 100%">
-            <button class="btn btn-success mx-2 px-8">Send Query</button>
+            <button id="addFieldValueForm" class="btn btn-primary mx-2 px-8">
+              Add Field + Value
+            </button>
+            <button onclick="query()" class="btn btn-success mx-2 px-8">
+              Send Query
+            </button>
           </div>
         </fieldset>
       </div>

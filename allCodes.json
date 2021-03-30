@@ -3,7 +3,7 @@
     { "fields": ["test", "isCheckedIn"], "values": {"test": false, "isCheckedIn": true}, "code": "ACK", "shortDesc": "Acknowledge", "group": "PassengerReservationCodes" },
     { "fields": ["isCheckedIn"], "values": {"isCheckedIn" : false}, "code": "ACKI", "shortDesc": "Automated Check-In", "group": "SECSSRCodes" },
     { "fields": ["isBoarded"], "values": {"isBoarded": false}, "code": "ACKI", "shortDesc": "Automated Check-In", "group": "PassengerReservationCodes" },
-    { "fields": ["isCheckedIn"], "values": {"isCheckedIn": false}, "code": "ACON", "shortDesc": "Air Conditioning", "group": "PassengerReservationCodes" },
+    { "fields": ["isCheckedIn", "isBoarded"], "values": {"isCheckedIn": true, "isBoarded": false}, "code": "ACON", "shortDesc": "Air Conditioning", "group": "PassengerReservationCodes" },
     { "fields": [], "values": {}, "code": "ADAC", "shortDesc": "Advise acceptance", "group": "PassengerReservationCodes" },
     { "fields": [], "values": {}, "code": "ADAR", "shortDesc": "Advise arrival", "group": "PassengerReservationCodes" },
     { "fields": [], "values": {}, "code": "ADB", "shortDesc": "Advise if duplicate booking", "group": "PassengerReservationCodes" },
