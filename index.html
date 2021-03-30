@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Code Test</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="jumbotron">
-        <div style="margin: auto 100px;">
-
-            <h1 class="display-4">AirIMP Code Tester</h1>
-            <p class="lead">For Testing AIRIMP Status Codes dictionary.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" onclick="resetCodesTable()" role="button">Reset Codes Table</a>
-        </div>
+      <div style="margin: auto 100px">
+        <h1 class="display-4">AirIMP Code Tester</h1>
+        <p class="lead">For Testing AIRIMP Status Codes dictionary.</p>
+        <hr class="my-4" />
+        <p>
+          It uses utility classes for typography and spacing to space content
+          out within the larger container.
+        </p>
+        <a
+          class="btn btn-primary btn-lg"
+          href="#"
+          onclick="resetCodesTable()"
+          role="button"
+          >Reset Codes Table</a
+        >
       </div>
-      <div class="container">
-        <h1>Query </h1>
-        <hr>
-        <!-- <div class="form-group">
+    </div>
+    <div class="container">
+      <h1>Query</h1>
+      <hr />
+      <!-- <div class="form-group">
             <label for="exampleFormControlInput1">Email address</label>
             <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
           </div> -->
     </div>
     <div class="container mb-4">
+<<<<<<< Updated upstream
         <div class="input-group">
             <input type="text" id="codeInput" class="form-control" placeholder="Enter AIRIMP Code or Field name" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -44,76 +58,140 @@
     </div>
         
             </div>
+=======
+      <div class="input-group">
+        <input
+          type="text"
+          id="codeInput"
+          class="form-control"
+          placeholder="Enter AIRIMP Code or Field name"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" id="getCodeDef" type="button">
+            Get Code Definitions
+          </button>
+          <button
+            class="btn btn-outline-secondary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Get Group Codes
+          </button>
+          <button
+            class="btn btn-warning"
+            id="getFieldRelatedCodes"
+            type="button"
+          >
+            Get Field related Codes
+          </button>
+          <div class="dropdown-menu" id="groupListMenu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div role="separator" class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+>>>>>>> Stashed changes
           </div>
-          <div class="toggle-container" id="alert-container">
-
-              <div class="alert alert-danger mt-2" role="alert">
-                  Some sort of Error
+        </div>
+      </div>
+      <div class="toggle-container" id="alert-container">
+        <div class="alert alert-danger mt-2" role="alert">
+          Some sort of Error
+        </div>
+      </div>
+      <a
+        class="btn btn-primary mt-2"
+        data-toggle="collapse"
+        href="#multiCollapseExample1"
+        role="button"
+        aria-expanded="false"
+        aria-controls="multiCollapseExample1"
+        >Show / hide Code Group Count</a
+      >
+      <a
+        class="btn btn-primary mt-2"
+        data-toggle="collapse"
+        href="#multiCollapseExample2"
+        role="button"
+        aria-expanded="false"
+        aria-controls="multiCollapseExample2"
+        >Toggle Field + Value Query</a
+      >
+      <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div id="resultsGroupCount">
+          <button type="button" class="btn btn-primary">
+            Notifications <span class="badge badge-light">4</span>
+          </button>
+        </div>
+      </div>
+      <div class="collapse multi-collapse" id="multiCollapseExample2">
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border">Fields + Values Query</legend>
+          <div id="fieldValueForm">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1"
+                    >Select FieldName</label
+                  >
+                  <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
                 </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Enter Field Value</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter field Value"
+                  />
+                </div>
+              </div>
+              <div
+                class="col mt-3"
+                style="
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+                "
+              >
+                <button class="btn btn-secondary">Add Field + value</button>
+              </div>
             </div>
-            <a class="btn btn-primary mt-2" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Show / hide Code Group Count</a>
-            <a class="btn btn-primary mt-2" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle Field + Value Query</a>
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-            <div id="resultsGroupCount">
-                <button type="button" class="btn btn-primary">
-                    Notifications <span class="badge badge-light">4</span>
-                </button>
-            </div>
-   
-            </div>
-            <div class="collapse multi-collapse" id="multiCollapseExample2">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">Fields + Values Query</legend>
-                    <div id="fieldValueForm">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Field</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                </select>
-                              </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Enter Field Value</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter field Value">   
-                            </div>
-                        </div>
-                        <div class="col mt-3" style="display: flex; justify-content: flex-start; align-items: center;">
-                            <button class="btn btn-secondary">Add Field + value</button>
-                        </div>
-                    </div>
-                    
-                    </div>
-                </fieldset>
-            </div>
+          </div>
+        </fieldset>
+      </div>
     </div>
-    
-    
-    <div class="container">
 
-        <h1>Results</h1>
-        <hr>
+    <div class="container">
+      <h1>Results</h1>
+      <hr />
     </div>
-    <div style="display: flex;" class="container">
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">S/N</th>
-                <th scope="col">Code</th>
-                <th scope="col">Fields</th>
-                <th scope="col">Values</th>
-                <th scope="col">Group</th>
-                <th scope="col">Short Description</th>
-              </tr>
-            </thead>
-            <tbody id="resultstable">
-              <!-- <tr>
+    <div style="display: flex" class="container">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Code</th>
+            <th scope="col">Fields</th>
+            <th scope="col">Values</th>
+            <th scope="col">Group</th>
+            <th scope="col">Short Description</th>
+          </tr>
+        </thead>
+        <tbody id="resultstable">
+          <!-- <tr>
                 <th >1</th>
                 <td>Mark</td>
                 <td>Otto</td>
@@ -137,12 +215,20 @@
                 <td>@mdo</td>
                 <td>@twitter</td>
               </tr> -->
-            </tbody>
-          </table>
+        </tbody>
+      </table>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+      integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
