@@ -26,19 +26,84 @@ const getCodeIndices = (query) => {
 };
 
 const searchByDescription = () => {};
+removeFieldValueForm = (i) => {
+  console.log({ i });
+  console.log({ fieldValueForm });
+  fieldValueForm.removeChild(fieldValueForm.childNodes[i]);
+};
 
+const soloSearch = (i) => {
+  console.log({ i });
+  let fieldName = document.querySelector(`#fieldName-${i}`);
+  let fieldValue = document.querySelector(`#fieldValue-${i}`);
+  console.log({ fieldName, fieldValue });
+};
 const createFieldValueForm = (i) => {
   let newForm = document.createElement("div");
   newForm.setAttribute("class", "row");
   let formCol1 = document.createElement("div");
-  formCol1.setAttribute("class", "col");
-  newForm.appendChild();
+  let formCol2 = document.createElement("div");
+  let formCol3 = document.createElement("div");
+  let formGroup1 = document.createElement("div");
+  let formGroup2 = document.createElement("div");
   let fieldNameSelect = document.createElement("select");
-  fieldValueInput = document.createElement("input");
+  let fieldNameLabel = document.createElement("label");
+  let fieldValueInput = document.createElement("input");
+  let fieldValueLabel = document.createElement("label");
   fieldNameSelect.setAttribute("class", "form-control");
-  fieldValueInput.setAttribute("class", "form-control");
+  fieldNameSelect.setAttribute("id", `fieldName-${i}`);
+  fieldNameLabel.setAttribute("for", `fieldName-${i}`);
+  fieldNameLabel.innerText = "Select Field Name";
+  allFieldNames.forEach((fieldname) => {
+    let fieldoption = document.createElement("option");
+    fieldoption.setAttribute("value", fieldname);
+    fieldoption.innerText = fieldname;
+    fieldNameSelect.appendChild(fieldoption);
+  });
 
-  newForm.innerHTML = ``;
+  fieldValueInput.setAttribute("class", "form-control");
+  fieldValueInput.setAttribute("type", "text");
+  fieldValueInput.setAttribute("placeholder", "Enter Field Value");
+  fieldNameSelect.addEventListener("change", (e) => {
+    const { value } = e.target;
+    console.log({ value: e.target.value });
+    fieldValueInput.setAttribute("placeholder", allFieldValues[value]);
+  });
+  fieldValueInput.setAttribute("id", `fieldValue-${i}`);
+  fieldValueLabel.setAttribute("for", `fieldValue-${i}`);
+  fieldValueLabel.innerText = "Enter Field Value";
+  formGroup1.setAttribute("class", "form-group");
+  formGroup1.appendChild(fieldNameLabel);
+  formGroup1.appendChild(fieldNameSelect);
+  formCol1.appendChild(formGroup1);
+
+  formGroup2.setAttribute("class", "form-group");
+  formGroup2.appendChild(fieldValueLabel);
+  formGroup2.appendChild(fieldValueInput);
+  formCol2.appendChild(formGroup2);
+  formCol1.setAttribute("class", "col-3");
+  formCol2.setAttribute("class", "col-3");
+  formCol3.setAttribute("class", "col-6 mt-3");
+  formCol3.style.display = "flex";
+  formCol3.style.justifyContent = "flex-start";
+  formCol3.style.alignItems = "center";
+
+  formCol3.innerHTML = `<button onClick="createFieldValueForm(${
+    i + 1
+  })" class="btn btn-primary">Add Field + value</button>
+  <button onClick="removeFieldValueForm(${i})" ${
+    i == 0 ? "disabled" : ""
+  } class="btn btn-danger mx-2">
+    Remove Field + value
+  </button>
+  <button class="btn btn-warning mx-2" onClick="soloSearch(${i})">Solo Search</button>`;
+
+  newForm.appendChild(formCol1);
+  newForm.appendChild(formCol2);
+  newForm.appendChild(formCol3);
+
+  fieldValueForm.appendChild(newForm);
+
   console.log({ newForm });
 };
 
@@ -183,20 +248,6 @@ codeInput.addEventListener("input", (e) => {
   codeOrGroupName = e.target.value;
 });
 
-getCodeDefBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (!codeOrGroupName) {
-    alert("Please enter a code or Group name");
-    return false;
-  }
-  const codeDefinitions = getCodeDefinition(codeOrGroupName);
-  displayStatusCodes(codeDefinitions);
-  showAlert(
-    `${codeDefinitions.length > 0 ? "success" : "warning"}`,
-    `<strong>${codeDefinitions.length}</strong> Code results found`
-  );
-});
-
 filterByDescBtn.addEventListener("click", (e) => {
   e.preventDefault();
   // console.log({codeOrGroupName});
@@ -258,7 +309,7 @@ const resetCodesTable = async () => {
     );
     allFieldNames = getAllFieldNames();
     console.log({ allFieldValues: getAllFieldValues() });
-    createFieldValueForm();
+    createFieldValueForm(0);
   });
 };
 

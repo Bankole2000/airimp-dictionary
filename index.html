@@ -41,24 +41,6 @@
           </div> -->
     </div>
     <div class="container mb-4">
-<<<<<<< Updated upstream
-        <div class="input-group">
-            <input type="text" id="codeInput" class="form-control" placeholder="Enter AIRIMP Code or Field name" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-primary" id="getCodeDef" type="button">Get Code Definitions</button>
-              <button class="btn btn-success" id="filterByDesc" type="button">Filter By Description</button>
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Get Group Codes</button>
-              <button class="btn btn-warning" id="getFieldRelatedCodes" type="button">Get Field related Codes </button>
-    <div class="dropdown-menu" id="groupListMenu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div role="separator" class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-        
-            </div>
-=======
       <div class="input-group">
         <input
           type="text"
@@ -71,6 +53,9 @@
         <div class="input-group-append">
           <button class="btn btn-primary" id="getCodeDef" type="button">
             Get Code Definitions
+          </button>
+          <button class="btn btn-success" id="filterByDesc" type="button">
+            Filter By Description
           </button>
           <button
             class="btn btn-outline-secondary dropdown-toggle"
@@ -89,15 +74,15 @@
             Get Field related Codes
           </button>
           <div class="dropdown-menu" id="groupListMenu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
->>>>>>> Stashed changes
+            <!-- <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div role="separator" class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a> -->
           </div>
         </div>
       </div>
+
       <div class="toggle-container" id="alert-container">
         <div class="alert alert-danger mt-2" role="alert">
           Some sort of Error
@@ -131,44 +116,9 @@
       <div class="collapse multi-collapse" id="multiCollapseExample2">
         <fieldset class="scheduler-border">
           <legend class="scheduler-border">Fields + Values Query</legend>
-          <div id="fieldValueForm">
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1"
-                    >Select FieldName</label
-                  >
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Enter Field Value</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Enter field Value"
-                  />
-                </div>
-              </div>
-              <div
-                class="col mt-3"
-                style="
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-                "
-              >
-                <button class="btn btn-secondary">Add Field + value</button>
-              </div>
-            </div>
+          <div id="fieldValueForm"></div>
+          <div style="display: flex; justify-content: center; width: 100%">
+            <button class="btn btn-success mx-2 px-8">Send Query</button>
           </div>
         </fieldset>
       </div>
@@ -190,32 +140,7 @@
             <th scope="col">Short Description</th>
           </tr>
         </thead>
-        <tbody id="resultstable">
-          <!-- <tr>
-                <th >1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@twitter</td>
-              </tr> -->
-        </tbody>
+        <tbody id="resultstable"></tbody>
       </table>
     </div>
     <script
