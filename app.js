@@ -9,6 +9,7 @@ const resultsGroupCount = document.querySelector('#resultsGroupCount')
 const alertContainer = document.querySelector('#alert-container')
 const grouplistMenu = document.querySelector('#groupListMenu')
 const fieldValueForm = document.querySelector('#fieldValueForm');
+const filterByDescBtn = document.querySelector('#filterByDesc');
 
 let  airStatusCodes, codeOrGroupName = codeInput.value, fieldNames = [], fieldValues = [], allFieldNames, allFieldValues = {};
 
@@ -148,6 +149,21 @@ getCodeDefBtn.addEventListener('click', (e) => {
     const codeDefinitions = getCodeDefinition(codeOrGroupName)
     displayStatusCodes(codeDefinitions);
     showAlert(`${codeDefinitions.length > 0 ? 'success': 'warning'}`, `<strong>${codeDefinitions.length}</strong> Code results found`)
+})
+
+filterByDescBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    // console.log({codeOrGroupName});
+    if(codeOrGroupName){
+        console.log({desc: codeOrGroupName});
+        let filteredResults = airStatusCodes.filter((codeObject) => codeObject.shortDesc.toLowerCase().includes(codeOrGroupName.toLowerCase()))
+        console.log({filteredResults})
+        displayStatusCodes(filteredResults);
+        showAlert(`${filteredResults.length > 0 ? 'success': 'warning'}`, `<strong>${filteredResults.length}</strong> Code results found`)
+
+    } else {
+        alert('Please enter a description');
+    }
 })
 
 getFieldRelatedCodesBtn.addEventListener('click', (e) => {
