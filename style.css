@@ -27,5 +27,32 @@ legend.scheduler-border {
     border-bottom:none;
 }
 
- 
+#header-content {
+  margin: auto 100px;
+}
+
+@media screen and (max-width: 450px) {
+  #header-content {
+    margin: auto 10px;
+  }
+
+  .input-group {
+    display: block;
+  }
+  .input-group-append {
+    display: flex; 
+    flex-direction: column;
+  }
+
+  .input-group-append button {
+    margin-bottom: 10px;
+    border-radius: 5px !important;
+  }
+
+  #codeInput {
+    display: block;
+    width: 100%;
+  }
+
+}
 

@@ -16,7 +16,7 @@
   <body>
     <div class="jumbotron text-white" style="background-image: url('tech.jpg'); background-size: cover; border-radius: 0;">
       <div class="overlay" style="background: rgba(0,0,0,0.7); height: 100%;"></div>
-      <div style="margin: auto 100px">
+      <div id="header-content" >
         <h1 class="display-4">AirIMP Code Tester</h1>
         <p class="lead">For Testing AIRIMP Status Codes dictionary.</p>
         <hr class="my-4" style="border: 1px solid white;"/>
@@ -42,7 +42,7 @@
         <input
           type="text"
           id="codeInput"
-          class="form-control"
+          class="form-control mb-2"
           placeholder="Enter AIRIMP Code or Field name"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
@@ -73,7 +73,7 @@
           <div class="dropdown-menu" id="groupListMenu"></div>
         </div>
       </div>
-
+      
       <div class="toggle-container" id="alert-container">
         <div class="alert alert-danger mt-2" role="alert">
           Some sort of Error
