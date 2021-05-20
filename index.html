@@ -14,11 +14,12 @@
     <title>Code Test</title>
   </head>
   <body>
-    <div class="jumbotron">
+    <div class="jumbotron text-white" style="background-image: url('tech.jpg'); background-size: cover; border-radius: 0;">
+      <div class="overlay" style="background: rgba(0,0,0,0.7); height: 100%;"></div>
       <div style="margin: auto 100px">
         <h1 class="display-4">AirIMP Code Tester</h1>
         <p class="lead">For Testing AIRIMP Status Codes dictionary.</p>
-        <hr class="my-4" />
+        <hr class="my-4" style="border: 1px solid white;"/>
         <p>
           It uses utility classes for typography and spacing to space content
           out within the larger container.
@@ -124,6 +125,7 @@
       <hr />
     </div>
     <div style="display: flex" class="container">
+      <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -137,6 +139,7 @@
         </thead>
         <tbody id="resultstable"></tbody>
       </table>
+      </div>
     </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
